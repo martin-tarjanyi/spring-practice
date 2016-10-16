@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Hello world!</title>
 </head>
 <body>
-    <h1>So, what's up?</h1>
+    <h1>Home page</h1>
+
+    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+        Logged in user: <span sec:authentication="name"></span><br/>
+        Role: <span sec:authentication="principal.authorities"></span>
+        <div>
+            <form action="#" th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout" />
+            </form>
+        </div>
+        <br/>
+    </div>
+
+    <div th:if="${not #authorization.expression('isAuthenticated()')}">
+        <div>Click here to <a href="/login">login</a>!</div>
+    </div>
+
+    <br/>
+    <div><a href="/user">User site</a></div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <div><a href="/admin">Admin site</a></div>
+    </div>
 </body>
 </html>

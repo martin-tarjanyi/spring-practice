@@ -11,5 +11,23 @@ public class DemoController
     {
         return "index";
     }
+
+    @RequestMapping("/user")
+    public String userPage()
+    {
+        return "user";
+    }
+
+    @RequestMapping("/admin")
+    public String adminPage()
+    {
+        return "admin";
+    }
+
+    @RequestMapping("/unauthorized")
+    public String unauthorized()
+    {
+        return "unauthorized";
+    }
 }
 
