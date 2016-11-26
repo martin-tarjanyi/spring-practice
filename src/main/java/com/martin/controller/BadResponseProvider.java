@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class BadResponseProvider
 {
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Response> error()
+    public ResponseEntity<Response> error(Exception ex)
     {
         return new ResponseEntity<>(new Response(500, "Oops, something unexpected happened.", null),
                 HttpStatus.INTERNAL_SERVER_ERROR);

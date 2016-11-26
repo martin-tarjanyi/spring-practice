@@ -1,0 +1,10 @@
+spring:
+  thymeleaf:
+    mode: HTML5
+
+security:
+  basic:
+    enabled: false
+
+server:
+  port: 9999
